@@ -14,6 +14,6 @@ api_key: str = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 
 
 def create_supabase_client():
-    print(api_url)
-    # supabase: Client = create_client(api_url, api_key)
-    # return supabase
+    # print(api_url)
+    supabase: Client = create_client(api_url, api_key)
+    return supabase
