@@ -1,21 +1,25 @@
 "use client";
 
 // Define an interface for the props
-interface DrawButtonProps {
-    user: string; // Define the type of the 'user' prop as string
+interface BirthButtonProps {
+    user: string,
+    birth: Date; // Define the type of the 'user' prop as string
   }
 
-const handleClick = async (user: string) => {
+const handleClick = async (user: string, birth: Date) => {
     // console.log(user)
     try {
-      const url = 'http://127.0.0.1:8000/api/draw/' + user
+      const url = 'http://127.0.0.1:8000/api/birth/'
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Assuming you're sending JSON data
         },
         // You can include a request body if needed
-        body: JSON.stringify({ /* your request body data */ }),
+        body: JSON.stringify({ 
+            "user_id": user,
+            "birth_date": birth
+         }),
       });
       
       if (!response.ok) {
@@ -29,9 +33,9 @@ const handleClick = async (user: string) => {
     }
   };
 
-export function DrawButton({user}: DrawButtonProps) {
+export function DrawButton({user, birth}: BirthButtonProps) {
   return (
-    <button onClick={() => handleClick(user)} type="submit" >
+    <button onClick={() => handleClick(user, birth)} type="submit" >
         draw
     </button>
   );
